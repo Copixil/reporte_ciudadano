@@ -38,7 +38,7 @@ const CardIncident = ({ data, fun }) => {
                         <Image
                             style={CardSytles.image}
                             source={{
-                                uri: `https://www.appalaorden.garcia.gob.mx/garcia/${data.resources[0].url}`,
+                                uri: `https://reportesapp.cpxproject.com/public/${data.resources[0].url}`,
                             }}
                         />
                         :
