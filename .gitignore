@@ -1,3 +1,4 @@
 node_modules
 yarn.lock
 garcia-app/yarn.lock
+garcia-app/.expo
