@@ -65,13 +65,13 @@ const ModalAddIncident = ({ fun }) => {
                                 />
                                 <View style={{ alignItems: 'center', marginBottom: 10 }}>
                                     <Button
-                                        buttonStyle={{ borderRadius: 100, width: 50, height: 50, backgroundColor: '#1E0554' }}
+                                        buttonStyle={{ borderRadius: 100, width: 50, height: 50, backgroundColor: '#1A84E6' }}
                                         loadingProps={{ color: '#000000' }}
                                         onPress={() => { navigation.navigate('PhotoScreen'), isVisibleModal('isVisibleIncident') }}
                                         icon={<Icon size={25} name={'camera'} type='font-awesome' color={'white'} />}
                                         disabled={false}
                                     />
-                                    <Text style={{ color: '#1E0554', marginBottom: 5, fontWeight: '700' }}>Tomar fotografía o video</Text>
+                                    <Text style={{ color: '#000000', marginBottom: 5, fontWeight: '700' }}>Tomar fotografía o video</Text>
                                 </View>
 
                             </View>

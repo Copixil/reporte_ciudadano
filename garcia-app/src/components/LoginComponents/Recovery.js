@@ -28,7 +28,7 @@ const Recovery = ({ signin, fetchingData, id, stateView }) => {
                 title={'Enviar'}
                 titleStyle={{ color: '#FFF' }}
                 loading={fetchingData ? true : false}
-                buttonStyle={{ backgroundColor: '#629DF6', borderRadius: 23 }}
+                buttonStyle={{ backgroundColor: '#5A5A5A', borderRadius: 23 }}
                 onPress={() => passwordRecovery(inputState.email)} />
 
             <Text style={AuthStyle.textDonAccount}>Volver a inicio de sesión</Text>

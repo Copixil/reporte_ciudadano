@@ -6,7 +6,7 @@ export const UserSytles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 20,
-        backgroundColor: "#1E0554",
+        backgroundColor: "#363636",
         display: 'flex',
     },
     text: {

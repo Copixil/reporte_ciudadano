@@ -15,7 +15,7 @@ const NavBar = (navigation) => {
 
     return (
         <Header
-            backgroundColor="#1E0554"
+            backgroundColor="#363636"
             barStyle="default"
             containerStyle={{ height: 110 }}
             leftContainerStyle={{ justifyContent: 'center' }}
@@ -25,12 +25,7 @@ const NavBar = (navigation) => {
                     height: 40,
                     resizeMode: 'stretch',
                 }} />}
-            centerComponent={
-                <Image source={Images.garciaLogoBlanco} style={{
-                    width: '65%',
-                    height: 40,
-                    resizeMode: 'stretch',
-                }} />}
+            centerComponent={null}
             leftComponent={
                 <TouchableOpacity
                     onPress={() => open()}

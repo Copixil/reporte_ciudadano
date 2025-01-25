@@ -19,7 +19,7 @@ const CustomDrawer = () => {
         <Drawer.Navigator
             screenOptions={{
                 animationTypeForReplace: 'pop',
-                drawerActiveBackgroundColor: '#1E0554',
+                drawerActiveBackgroundColor: '#363636',
                 drawerInactiveBackgroundColor: '#FFFFFF',
                 drawerActiveTintColor: '#FFFFFF',
                 drawerInactiveTintColor: '#23233C',

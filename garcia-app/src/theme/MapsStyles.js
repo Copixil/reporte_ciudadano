@@ -29,7 +29,7 @@ export const MapsStyles = StyleSheet.create({
         },
     },
     containerBottonNavBar: {
-        backgroundColor: '#1E0554',
+        backgroundColor: '#363636',
         flex: 0,
         flexDirection: 'row',
         justifyContent: 'space-between',

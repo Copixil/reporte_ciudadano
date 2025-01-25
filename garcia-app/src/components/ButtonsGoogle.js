@@ -30,7 +30,8 @@ const styles = StyleSheet.create({
         borderColor: "#fff",
         height: 50,
         borderRadius: 28,
-        margin: 5
+        margin: 5,
+        flex: 1
     },
     imageIconStyle: {
         marginLeft: 10,

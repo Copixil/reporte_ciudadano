@@ -66,7 +66,7 @@ const Login = ({ onChangeText, signin, fetchingData, id, stateView, authFacebook
                 onChangeText={(value) => onChangeText(value, 'password')} />
             <ButtonFrom
                 title="Iniciar"
-                color="#629DF6"
+                color="#1A84E6"
                 handleSubmit={() => signin(id)}
                 loading={fetchingData ? true : false}
             />
