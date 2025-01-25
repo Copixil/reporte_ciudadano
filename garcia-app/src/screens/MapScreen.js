@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, Image ,Platform} from 'react-native';
 import { Context as AuthContext } from '../context/AuthContext';
 import { Context as RegistrationContext } from '../context/RegistrationContext';
 import { Context as LocationContext } from '../context/LocationContext';
-import MapView, { Marker, PROVIDER_GOOGLE, enableLatestRenderer } from 'react-native-maps';
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { MapsStyles } from '../theme/MapsStyles';
 import CardAlert from '../components/CardAlert';
 import { Icon, Button, Card } from 'react-native-elements';
@@ -30,7 +30,7 @@ const MapScreen = () => {
     const { state: stateAuth, signout } = useContext(AuthContext);
     const [markCard, setmarkCard] = useState('');
     const [location, setLocation] = useState(null);
-    enableLatestRenderer();
+    // enableLatestRenderer();
     useEffect(() => {
         requestForegroundPermissions()
         clearStateFrom();

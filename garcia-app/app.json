@@ -42,10 +42,10 @@
       },
       "bundleIdentifier": "com.copixil.GarciaApp"
     },
+    "newArchEnabled": false,
     "android": {
       "package": "com.copixil.GarciaApp",
       "versionCode": 18,
-      "useProxy": false,
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
@@ -60,7 +60,6 @@
         "FOREGROUND_SERVICE"
       ],
       "config": {
-        "googleServicesFile": "./google-services.json",
         "googleMaps": {
           "apiKey": "AIzaSyD9As-GqbZc_taGYaxm-w5UkOMcmLtXxRM"
         }
