@@ -2,7 +2,7 @@
   "expo": {
     "name": "MapaBlack",
     "slug": "Garcia",
-    "version": "4.1.3",
+    "version": "4.1.4",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -45,7 +45,7 @@
     "newArchEnabled": false,
     "android": {
       "package": "com.copixil.GarciaApp",
-      "versionCode": 18,
+      "versionCode": 19,
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
