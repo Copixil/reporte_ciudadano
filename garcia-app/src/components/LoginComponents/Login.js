@@ -9,6 +9,7 @@ import InputForm from "../Forms/InputForm";
 import ButtonsGoogle from "../ButtonsGoogle"
 import { GoogleSignin, statusCodes, } from '@react-native-google-signin/google-signin';
 import * as AppleAuthentication from 'expo-apple-authentication';
+import * as Application from 'expo-application';
 
 GoogleSignin.configure({
     offlineAccess: true,
@@ -48,6 +49,7 @@ const Login = ({ onChangeText, signin, fetchingData, id, stateView, authFacebook
         <View style={{ flex: 1, width: '100%' }}>
             <Text style={[AuthStyle.TextAuth, { fontSize: 18, marginBottom: 27 }]}>¡Hola!, Bienvenido</Text>
             <Image source={Images.garciaLogo} style={AuthStyle.ImagenLogo} />
+            <Text style={{ textAlign: 'center', color: 'gray', marginBottom: 20 }}>Versión: {Application.nativeApplicationVersion}</Text>
             <Text style={[AuthStyle.TextAuth, { fontSize: 14, marginBottom: 20 }]}>Iniciar sesión</Text>
             <InputForm
                 maxLength={50}

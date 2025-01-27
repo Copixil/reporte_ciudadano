@@ -31,7 +31,7 @@ export const AuthStyle = StyleSheet.create({
     ImagenLogo: {
         height: 60,
         width: 245,
-        marginBottom: 30,
+        marginBottom: 5,
         alignSelf: 'center'
     },
     TextAuth: {
