@@ -18,7 +18,7 @@ const initialState = {
     listPatients: [],
     file_number: '',
     dataFrom: [],
-    dataReport: [],
+    dataReport: {},
 }
 
 const RegistrationReducer = (state = initialState, action) => {
@@ -36,7 +36,7 @@ const RegistrationReducer = (state = initialState, action) => {
                 error: false,
                 message: null,
                 fetchingData: false,
-                dataReport: [],
+                dataReport: {},
             }
         case 'SET_REQUEST_ERROR':
             return {
