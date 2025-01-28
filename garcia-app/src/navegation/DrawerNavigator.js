@@ -15,10 +15,11 @@ const DrawerNavigator = props => {
   useEffect(() => {
     async function getLocalUser() {
       const localUser = JSON.parse(await AsyncStorage.getItem('user'))
+      // https://www.appalaorden.garcia.gob.mx/garcia/uploads/images/users/1/IdmKw3eSb4wnhuGfgRYTDhV2M.jpg
       setUser(localUser)
     }
     getLocalUser()
-  }, [user])
+  }, [])
 
   const filteredState = props.state.routes.filter(
     route => route.name !== 'Pruebas'
