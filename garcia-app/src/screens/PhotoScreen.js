@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, useContext } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, Image, TouchableOpacity } from 'react-native';
 import { Input, Button, Icon } from 'react-native-elements';
 import { useNavigation, } from '@react-navigation/native';
-import { Camera } from 'expo-camera';
+import { CameraView, useCameraPermissions, useMicrophonePermissions } from 'expo-camera';
 import { Video } from 'expo-av';
 import { shareAsync } from 'expo-sharing';
 import { Context as RegistrationContext } from '../context/RegistrationContext';
@@ -13,41 +13,36 @@ import * as MediaLibrary from 'expo-media-library';
 const PhotoScreen = () => {
 
     let cameraRef = useRef();
-    const [hasCameraPermission, setHasCameraPermission] = useState();
-    const [hasMicrophonePermission, setHasMicrophonePermission] = useState();
+    const [cameraPermission, requestCameraPermission] = useCameraPermissions();
+    const [microphonePermission, requestMicrophonePermission] = useMicrophonePermissions();
+    const [mediaLibraryPermission, requestMediaLibraryPermission] = MediaLibrary.usePermissions();
+
     const [isRecording, setIsRecording] = useState(false);
     const [video, setVideo] = useState();
     const navigation = useNavigation();
-    const [type, setType] = useState(Camera.Constants.Type.back);
-    const [flashMode, setFlashMode] = useState(Camera.Constants.FlashMode.off);
-    const { state, isVisibleModal, setReportMedia } = useContext(RegistrationContext);
-    const [hasMediaLibraryPermission, setHasMediaLibraryPermission] = useState();
+    const [flashMode, setFlashMode] = useState("off");
+    const { isVisibleModal, setReportMedia } = useContext(RegistrationContext);
     const [photo, setPhoto] = useState();
-    const [imagenSeleccionada, setImagenSeleccionada] = useState(null);
+    const [mode, setMode] = useState('picture');
 
 
     useEffect(() => {
         (async () => {
-            const cameraPermission = await Camera.requestCameraPermissionsAsync();
-            const microphonePermission = await Camera.requestMicrophonePermissionsAsync();
-            const mediaLibraryPermission = await MediaLibrary.requestPermissionsAsync();
-            setHasCameraPermission(cameraPermission.status === "granted");
-            setHasMicrophonePermission(microphonePermission.status === "granted");
-            setHasMediaLibraryPermission(mediaLibraryPermission.status === "granted");
+            await requestCameraPermission();
+            await requestMicrophonePermission();
+            await requestMediaLibraryPermission();
         })();
     }, []);
 
-    if (hasCameraPermission === undefined || hasMicrophonePermission === undefined) {
-        return <Text>Requestion permissions...</Text>
-    } else if (!hasCameraPermission) {
-        return <Text>Permission for camera not granted.</Text>
+    if (!cameraPermission?.granted) {
+        return <View style={styles.container}><Text>Requestion permissions...</Text></View>
     }
 
     const toggleFlashMode = () => {
-        if (flashMode === Camera.Constants.FlashMode.off) {
-            setFlashMode(Camera.Constants.FlashMode.on);
+        if (flashMode === "off") {
+            setFlashMode("on");
         } else {
-            setFlashMode(Camera.Constants.FlashMode.off);
+            setFlashMode("off");
         }
     };
     const pickImage = async () => {
@@ -97,7 +92,7 @@ const PhotoScreen = () => {
                         containerStyle={{ width: '45%' }}
                         buttonStyle={{ backgroundColor: '#848484' }}
                         onPress={() => setPhoto(undefined)} />
-                    {hasMediaLibraryPermission
+                    {mediaLibraryPermission.granted
                         ?
                         <Button
                             title="Guardar"
@@ -161,7 +156,7 @@ const PhotoScreen = () => {
                     isLooping
                 />
                 <View style={[{ flexDirection: 'row', justifyContent: 'space-around', marginVertical: '3%' }]}>
-                    {hasMediaLibraryPermission
+                    {mediaLibraryPermission.granted
                         ?
                         <Button
                             title="Cancelar"
@@ -185,45 +180,45 @@ const PhotoScreen = () => {
     }
     return (
         <View style={styles.container}>
-            <Camera style={styles.camera} type={type} flashMode={flashMode} ref={cameraRef}>
-                <View style={styles.buttonContainer}>
-                    {/* <TouchableOpacity style={styles.button} onPress={() => pickImage()}>
-                        <Icon
-                            name="md-images"
-                            size={30}
-                            type='ionicon'
-                            color="white" />
-                    </TouchableOpacity> */}
-                    <TouchableOpacity style={styles.button} onPress={() => toggleFlashMode()}>
-                        <Icon
-                            size={30}
-                            name={flashMode === Camera.Constants.FlashMode.on ? 'flash' : 'flash-off'}
-                            type='ionicon'
-                            color={'white'} />
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.button} onPress={isRecording ? stopRecording : recordVideo}>
-                        <Icon
-                            size={30}
-                            name={isRecording ? 'videocam-off' : 'videocam'}
-                            type='MaterialIcons'
-                            color={isRecording ? 'red' : 'white'} />
-                    </TouchableOpacity>
-                    {/* <TouchableOpacity style={styles.button} onPress={toggleCameraType}>
-                        <Icon
-                            name={isFrontCamera ? 'camera-reverse' : 'camera'}
-                            size={30}
-                            type='ionicon'
-                            color="white" />
-                    </TouchableOpacity> */}
-                    <TouchableOpacity style={styles.button} onPress={() => takePic()}>
+            <CameraView style={styles.camera} facing='back' flashMode={flashMode} mode={mode} ref={cameraRef}>
+                <View style={styles.topButtonContainer}>
+                    <TouchableOpacity style={styles.button} onPress={() => setMode('picture')}>
                         <Icon
                             name="camera"
                             size={30}
                             type='ionicon'
-                            color="white" />
+                            color={mode == 'picture' ? 'red' : 'white'} />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.button} onPress={() => setMode('video')}>
+                        <Icon
+                            name="videocam"
+                            size={30}
+                            type='ionicon'
+                            color={mode == 'video' ? 'red' : 'white'} />
                     </TouchableOpacity>
                 </View>
-            </Camera >
+                <View style={styles.bottomButtonContainer}>
+                   
+                    <TouchableOpacity style={styles.button} onPress={() => toggleFlashMode()}>
+                        <Icon
+                            size={30}
+                            name={flashMode === "on" ? 'flash' : 'flash-off'}
+                            type='ionicon'
+                            color={'white'} />
+                    </TouchableOpacity>
+
+                    
+                    <TouchableOpacity 
+                        style={styles.button} 
+                        onPress={mode == 'video' ? (isRecording ? stopRecording : recordVideo) : takePic}>
+                            <Icon
+                                size={30}
+                                name={ mode == 'video' ? (isRecording ? 'videocam-off' : 'videocam') : 'camera'}
+                                type='MaterialIcons'
+                                color={mode == 'video' ? (isRecording ? 'red' : 'white') : 'white'} />
+                    </TouchableOpacity>
+                </View>
+            </CameraView>
             {/* Resto del código */}
         </View >
     );
@@ -246,13 +241,21 @@ const styles = StyleSheet.create({
         flex: 1,
         alignSelf: "stretch"
     },
-    buttonContainer: {
+    bottomButtonContainer: {
         position: 'absolute',
         bottom: 0,
         flexDirection: 'row',
         justifyContent: 'space-between',
         width: '100%',
         padding: 20,
+    },
+    topButtonContainer: {
+        position: 'absolute',
+        top: 35,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        width: '100%',
+        padding: 0,
     },
     button: {
         padding: 10,
