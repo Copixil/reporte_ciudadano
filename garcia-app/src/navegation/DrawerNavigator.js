@@ -15,7 +15,6 @@ const DrawerNavigator = props => {
   useEffect(() => {
     async function getLocalUser() {
       const localUser = JSON.parse(await AsyncStorage.getItem('user'))
-      // https://www.appalaorden.garcia.gob.mx/garcia/uploads/images/users/1/IdmKw3eSb4wnhuGfgRYTDhV2M.jpg
       setUser(localUser)
     }
     getLocalUser()
@@ -52,7 +51,7 @@ const DrawerNavigator = props => {
                     source={{
                       uri: user?.userData.picture.startsWith('http')
                         ? user?.userData.picture
-                        : `https://www.appalaorden.garcia.gob.mx/garcia/${user?.userData.picture}`
+                        : `https://reportesapp.cpxproject.com/${user?.userData.picture}`
                     }} />
               }
               <Text style={{ textAlign: 'center', fontWeight: '500' }}> {user?.userData.full_name}</Text>

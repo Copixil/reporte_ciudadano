@@ -77,7 +77,7 @@ const UserScreen = () => {
         <ImagenPerfil
           picture={user.picture?.startsWith('http')
             ? user.picture
-            : `https://www.appalaorden.garcia.gob.mx/garcia/${user.picture}`}
+            : `https://reportesapp.cpxproject.com/${user.picture}`}
           onChangeText={(value, typedata) => handleInputChange(value, typedata)} />
         <Text style={[UserSytles.text, { fontSize: 20, }]}>Nombre</Text>
         <Text style={[UserSytles.text, { fontSize: 20, }]}>
