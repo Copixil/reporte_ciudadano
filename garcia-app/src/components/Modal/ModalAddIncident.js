@@ -7,12 +7,12 @@ import DropD from '../DropD';
 import { Video } from 'expo-av';
 import Images from "../../components/assets/images";
 import { Icon, Button } from 'react-native-elements'
-
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
 const { width } = Dimensions.get("window");
 const ModalAddIncident = ({ fun }) => {
     const navigation = useNavigation();
-    const { state, isVisibleModal, setReportInfo, clearStateFrom, store } = useContext(RegistrationContext);
+    const { state, locationRevers, isVisibleModal, setReportInfo, clearStateFrom, store } = useContext(RegistrationContext);
 
 
     return (
@@ -37,6 +37,41 @@ const ModalAddIncident = ({ fun }) => {
                                 color={'#4267B2'} />
                         </View>
                         <Text style={styles.text}>Nuevo reporte</Text>
+
+                        {/* <View style={{ width: '100%', marginBottom: 50 }}>
+                            <Text style={[{ fontWeight: '400', color: '#393939', marginBottom: 10, paddingLeft: 5 }]}>Ubicación</Text>
+                            <GooglePlacesAutocomplete
+                                placeholder='Search'
+                                fetchDetails={true}
+                                onPress={(data, details = null) => {
+                                    const ubi = {
+                                        longitude: details.geometry.location.lng,
+                                        latitude: details.geometry.location.lat,
+                                    }
+                                    locationRevers(ubi);
+                                }}
+                                query={{
+                                    key: 'AIzaSyBOObTSem3aqq6Gv6UWKJV3oOzxjhN9iBg',
+                                    language: 'es',
+                                }}
+                                styles={{
+                                    listView: {
+                                        position: 'absolute',
+                                        top: 40,
+                                        height: 150,
+                                        zIndex: 2
+                                    },
+                                    textInput: {
+                                        borderRadius: 50
+                                    },
+                                    container: {
+                                        paddingLeft: 5,
+                                        paddingRight: 5,
+                                    }
+                                }}
+                            />
+                        </View> */}
+
                         <ScrollView style={{ flex: 1, marginBottom: 10, width: '100%', }}>
                             <View style={{ flex: 1, flexDirection: 'column', padding: 8 }}>
                                 <Text style={[{ fontWeight: '400', color: '#393939', marginBottom: 10 }]}>Ubicación</Text>
