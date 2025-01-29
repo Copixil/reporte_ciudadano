@@ -118,7 +118,7 @@ const MapScreen = () => {
                     if (location) {
                         isVisibleModal('isVisibleIncident');
                     } else {
-                        Alert.alert('Seleccione una ubicacion', 'Es necesario que seleccione un lugar en el mapa para poder crear un reporte nuevo', [
+                        Alert.alert('Seleccione una ubicación', 'Es necesario que seleccione un lugar en el mapa para poder crear un reporte nuevo', [
                             { text: 'OK', onPress: () => console.log('OK Pressed') },
                         ]);
                     }
