@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, useRef, useCallback } from 'react';
-import { View, Text, TouchableOpacity, Image ,Platform} from 'react-native';
+import { View, Text, TouchableOpacity, Image, Platform, Alert } from 'react-native';
 import { Context as AuthContext } from '../context/AuthContext';
 import { Context as RegistrationContext } from '../context/RegistrationContext';
 import { Context as LocationContext } from '../context/LocationContext';
@@ -44,7 +44,7 @@ const MapScreen = () => {
         return colors[randomIndex];
     }
     const ValueLocation = Platform.OS === 'android' ? false : true;
-    
+
     return (
         <View style={MapsStyles.container}>
             {!stateLocation.hasPermission ?
@@ -115,7 +115,13 @@ const MapScreen = () => {
                     <Text style={MapsStyles.textNavBar}>Mis{'\n'}Reportes</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={MapsStyles.buttonNavBar} onPress={() => {
-                    isVisibleModal('isVisibleIncident');
+                    if (location) {
+                        isVisibleModal('isVisibleIncident');
+                    } else {
+                        Alert.alert('Seleccione una ubicacion', 'Es necesario que seleccione un lugar en el mapa para poder crear un reporte nuevo', [
+                            { text: 'OK', onPress: () => console.log('OK Pressed') },
+                        ]);
+                    }
                 }}>
                     <Image source={Images.iconAddReportes} style={MapsStyles.imagenNarBar} />
                     <Text style={MapsStyles.textNavBar}>Nuevo{'\n'}Reporte</Text>
