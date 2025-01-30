@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Reporte Ciudadano",
-    "slug": "reporteciudadano",
+    "name": "MapaBlack",
+    "slug": "Garcia",
     "version": "4.1.5",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -40,11 +40,11 @@
       "config": {
         "googleMapsApiKey": "AIzaSyD9As-GqbZc_taGYaxm-w5UkOMcmLtXxRM"
       },
-      "bundleIdentifier": "com.copixil.ReporteCiudadano"
+      "bundleIdentifier": "com.copixil.GarciaApp"
     },
     "newArchEnabled": false,
     "android": {
-      "package": "com.copixil.ReporteCiudadano",
+      "package": "com.copixil.GarciaApp",
       "versionCode": 19,
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",

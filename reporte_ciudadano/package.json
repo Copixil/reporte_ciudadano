@@ -73,6 +73,6 @@
     "@babel/core": "^7.20.0"
   },
   "private": true,
-  "name": "reporte-ciudadano",
+  "name": "garcia-app",
   "version": "1.0.0"
 }
