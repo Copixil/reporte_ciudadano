@@ -1,5 +1,6 @@
 node_modules
 yarn.lock
-garcia-app/yarn.lock
-garcia-app/.expo
-garcia-app/android
+reporte_ciudadano/yarn.lock
+reporte_ciudadano/.expo
+reporte_ciudadano/android
+reporte_ciudadano/ios
